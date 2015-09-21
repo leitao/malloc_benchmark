@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
 
     fflush(stdout);
 #else
-   fprintf(stdout, "%.3f %.3f %.3f\n", seconds, overhead, 1000000000.0 * (seconds-overhead)/calls);  
+   fprintf(stdout, "%.3f %.3f %.3f\n", seconds, overhead, 1000000000.0 * seconds/calls);  
    fflush(stdout);
 
 #endif
