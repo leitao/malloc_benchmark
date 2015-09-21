@@ -137,8 +137,8 @@ int main(int argc, char *argv[])
         fprintf(stdout, "%16s: %lu to %lu bytes: ",
                 alloc[a].name, (unsigned long)minsize, (unsigned long)maxsize);
     else
-        fprintf(stdout, "%16s: %lu bytes: ",
-                alloc[a].name, (unsigned long)minsize);
+        fprintf(stdout, "%lu bytes: ",
+                (unsigned long)minsize);
     fflush(stdout);
 
     /* Reset PRNG to a known state, to ensure allocation size sequence
@@ -151,12 +151,18 @@ int main(int argc, char *argv[])
 
     seconds = user_cpu_seconds();
 
+#ifdef verbose
     fprintf(stdout, "%.3f ns per allocation (+ %.3f ns; %.3f s + %.3f s total)\n",
             1000000000.0 * (seconds - overhead) / calls,
             1000000000.0 * overhead / calls,
             seconds, overhead);
 
     fflush(stdout);
+#else
+   fprintf(stdout, "%.3f %.3f %.3f\n", seconds, overhead, 1000000000.0 * (seconds-overhead)/calls);  
+   fflush(stdout);
+
+#endif
 
     return 0;
 }
