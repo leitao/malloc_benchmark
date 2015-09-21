@@ -12,7 +12,7 @@ else
 fi
 
 LIBC=""
-ROUNDS=1000000
+ROUNDS=10000000
 COUNT=5
 
 for ALLOC in " " $JE $TC
